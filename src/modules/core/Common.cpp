@@ -18,10 +18,8 @@ Move createEmptyMove() {
     move.capturedPiece = PIECE_NONE;
     move.promotedTo = PIECE_NONE;
     move.isCastling = false;
-    move.isEnPassant = false;
-    move.isPromotion = false;
+    move.isEnPassant = false; 
 
-    return move;
 }
 
 bool operator==(const Position& a, const Position& b) {
