@@ -20,7 +20,7 @@ Move createEmptyMove() {
     move.isCastling = false;
     move.isEnPassant = false;
     move.isPromotion = false;
-    
+
     return move;
 }
 
