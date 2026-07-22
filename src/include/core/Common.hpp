@@ -2,13 +2,13 @@
 #define COMMON_HPP
 
 enum Color{
-    NONE,
+    COLOR_NONE,
     WHITE,
     BLACK
 };
 
 enum PieceType {
-    NONE,
+    PIECE_NONE,
     PAWN,
     KNIGHT,
     BISHOP,
@@ -32,7 +32,7 @@ struct Position {
 struct Move {
     Position start;
     Position end;
-    PieceType movePiece;
+    PieceType movedPiece;
     PieceType capturedPiece;
     PieceType promotedTo;
     bool isCastling;

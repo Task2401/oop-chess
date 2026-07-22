@@ -2,8 +2,10 @@
 
 Position createPosition(char file, char rank) {
     Position pos;
+
     pos.file = file;
     pos.rank = rank;
+    
     return pos;
 }
 
@@ -12,9 +14,9 @@ Move createEmptyMove() {
 
     move.start = createPosition('-', '-');
     move.end = createPosition('-', '-');
-    move.movePiece = NONE;
-    move.capturedPiece = NONE;
-    move.promotedTo = NONE;
+    move.movedPiece = PIECE_NONE;
+    move.capturedPiece = PIECE_NONE;
+    move.promotedTo = PIECE_NONE;
     move.isCastling = false;
     move.isEnPassant = false;
     move.isPromotion = false;
@@ -32,7 +34,7 @@ bool operator!=(const Position& a, const Position& b) {
 
 bool operator==(const Move& a, const Move& b) {
     return a.start == b.start && a.end == b.end &&
-     a.movePiece == b.movePiece && a.capturedPiece == b.capturedPiece &&
+     a.movedPiece == b.movedPiece && a.capturedPiece == b.capturedPiece &&
      a.isCastling == b.isCastling && a.isEnPassant == b.isEnPassant &&
      a.isPromotion == b.isPromotion && a.promotedTo == b.promotedTo;
 }
