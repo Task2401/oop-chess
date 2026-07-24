@@ -21,15 +21,13 @@ class ChessBoard {
 
         void setupChessBoard();
         void printChessBoard();
-
-        std::string getPieceAt(const Position& piecePos) const;
-        void setPieceAt(const Position& piecePos, std::string& pieceStr);
         void clearSquere(const Position& gridPos);
-
         void makeMove(const Move& move);
         
+        void setPieceAt(const Position& piecePos, std::string& pieceStr);
+        
+        std::string getPieceAt(const Position& piecePos) const;
         Color getActiveColor() const;
-
 };
 
 
