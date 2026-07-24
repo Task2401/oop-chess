@@ -9,9 +9,9 @@ using namespace std;
 
 ChessBoard::ChessBoard()
     :activateColor(COLOR_NONE),
+    enPassantTarget(createPosition('-', '-')),
     canCastleKingside{false, false, false},
     canCastleQueenside{false, false, false},
-    enPassantTarget(createPosition('-', '-')),
     halfMoveClock(0),
     fullMoveNumber(1)
     {
