@@ -20,12 +20,15 @@ class ChessBoard {
         ~ChessBoard();
 
         void setupChessBoard();
-        void printChessBoard();
-        void clearSquere(const Position& gridPos);
+        void printChessBoard() const;
+        void clearSquare(const Position& gridPos);
         void makeMove(const Move& move);
         
-        void setPieceAt(const Position& piecePos, std::string& pieceStr);
+        void setPieceAt(const Position& piecePos, const std::string& pieceStr);
         
+
+        int getRow(const Position& gridPos) const;
+        int getCol(const Position& gridPos) const;
         std::string getPieceAt(const Position& piecePos) const;
         Color getActiveColor() const;
 };
