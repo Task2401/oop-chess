@@ -111,8 +111,15 @@ void ChessBoard::makeMove(const Move& move) {
         setPieceAt(move.end, promoStr);
     }
 
-    if (piece == "K") { canCastleKingside[WHITE] = false; canCastleQueenside[WHITE] = false; }
-    if (piece == "k") { canCastleKingside[BLACK] = false; canCastleQueenside[BLACK] = false; }
+    if (piece == "K") {
+        canCastleKingside[WHITE] = false; 
+        canCastleQueenside[WHITE] = false; 
+    }
+    
+    if (piece == "k") { 
+        canCastleKingside[BLACK] = false; 
+        canCastleQueenside[BLACK] = false; 
+    }
     
     if (piece == "R" && move.start.file == 'h' && move.start.rank == '1') canCastleKingside[WHITE] = false;
     if (piece == "R" && move.start.file == 'a' && move.start.rank == '1') canCastleQueenside[WHITE] = false;
