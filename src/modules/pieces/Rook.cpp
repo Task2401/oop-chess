@@ -50,7 +50,7 @@ vector<Move> Rook::getPseudoLegalMoves(const ChessBoard& board, Position current
                 moves.push_back(move);
             } else {
                 if (isOpponent(targetPiece)) {
-                    Move move =createEmptyMove();
+                    Move move = createEmptyMove();
                     move.start = currentPos;
                     move.end = targetPos;
                     move.movedPiece = ROOK;
