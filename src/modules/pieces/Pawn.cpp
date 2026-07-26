@@ -57,7 +57,7 @@ vector<Move> Pawn::getPseudoLegalMoves(const ChessBoard& board, Position current
         }
     }
     
-    auto isOpponent = [&](const std::string& targetPiece) {
+    auto isOpponent = [&](const string& targetPiece) {
         if (targetPiece == " ") return false;
         if (getColor() == WHITE && islower(targetPiece[0])) return true;
         if (getColor() == BLACK && isupper(targetPiece[0])) return true;
