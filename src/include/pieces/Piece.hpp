@@ -17,7 +17,7 @@ class Piece {
 
         Color getColor() const;
         char getSymbol() const;
-        virtual std::vector<Move> getPseudoLegalMove(const ChessBoard& board, Position currentPos) const = 0;
+        virtual  std::vector<Move> getPseudoLegalMoves(const ChessBoard& board, Position currentPos) const = 0;
 
 };
 

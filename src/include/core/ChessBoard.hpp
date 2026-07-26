@@ -31,6 +31,7 @@ class ChessBoard {
         int getCol(const Position& gridPos) const;
         std::string getPieceAt(const Position& piecePos) const;
         Color getActiveColor() const;
+        Position getEnPassantTarget() const;
 };
 
 

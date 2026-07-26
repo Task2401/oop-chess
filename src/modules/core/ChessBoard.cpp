@@ -106,8 +106,31 @@ void ChessBoard::makeMove(const Move& move) {
         }
     }
 
-    if(move.promotedTo != ' ' && move.promotedTo != '\0') {
-        string promoStr(1, move.promotedTo);
+    if (move.isPromotion) {
+        string promoStr = "";
+        bool isWhite = (piece == "P");
+
+        switch (move.promotedTo) {
+            case QUEEN:
+                promoStr = isWhite ? "Q" : "q";
+                break;
+
+            case ROOK:
+                promoStr = isWhite ? "R" : "r";
+                break;
+
+            case BISHOP:
+                promoStr = isWhite ? "B" : "b";
+                break;
+
+            case KNIGHT:
+                promoStr = isWhite ? "N" : "n";
+                break;
+
+            default:
+                promoStr = isWhite ? "Q" : "q";
+                break;
+        }
         setPieceAt(move.end, promoStr);
     }
 
@@ -168,3 +191,7 @@ string ChessBoard::getPieceAt(const Position& piecePos) const {
 Color ChessBoard::getActiveColor() const {
     return activateColor;
 }
+
+Position ChessBoard::getEnPassantTarget() const {
+    return enPassantTarget;
+} 
