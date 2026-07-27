@@ -25,7 +25,7 @@ vector<Move> Bishop::getPseudoLegalMoves(const ChessBoard& board, Position curre
     auto isOpponent = [&](const string& targetPiece) {
         if (targetPiece == " ") return false;
         if (getColor() == WHITE && islower(targetPiece[0])) return true;
-
+        if (getColor() == BLACK && isupper(targetPiece[0])) return true;
         return false;
     };
 
