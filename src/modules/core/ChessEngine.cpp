@@ -1,8 +1,19 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cctype>
+
 
 #include "../../include/core/ChessEngine.hpp"
+#include "../../include/pieces/Pawn.hpp"
+#include "../../include/pieces/Knight.hpp"
+#include "../../include/pieces/Bishop.hpp"
+#include "../../include/pieces/Rook.hpp"
+#include "../../include/pieces/Queen.hpp"
+#include "../../include/pieces/King.hpp"
+
+
+
 
 using namespace std;
 
@@ -14,20 +25,99 @@ ChessEngine::~ChessEngine() {
     cout << "ChessEngine destroyed succesfully!"<< endl;
 }
 
-vector<Move> ChessEngine::filterLegalMoves(const vector<Move> pseudoMoves) const {
+vector<Move> ChessEngine::filterLegalMoves(const vector<Move>& pseudoMoves) const {
     vector<Move> legalMoves;
 
-    // ...
+    Color myColor = board.getActiveColor();
+    Color opponentColor = (myColor == WHITE) ? BLACK : WHITE;
+    string myKing = (myColor == WHITE) ? "K" : "k";
 
+    for (const Move& move : pseudoMoves) {
+        ChessEngine tempEngine = *this;
+        tempEngine.board.makeMove(move);
+
+        Position kingPos;
+        bool kingFound = false;
+
+        for (char file = 'a'; file <= 'h'; file++) {
+            for (char rank = '1'; rank <= '8'; rank++) {
+                Position pos = createPosition(file, rank);
+                if (tempEngine.board.getPieceAt(pos) == myKing) {
+                    kingPos = pos;
+                    kingFound = true;
+                    break;
+                }
+            }
+            if (kingFound) break;
+        }
+        if (kingFound && !tempEngine.isSquareAttacked(kingPos, opponentColor)) 
+            legalMoves.push_back(move); 
+    }
     return legalMoves;
 }
 
 vector<Move> ChessEngine::getAllLegalMoves() const {
-    vector<Move> allMoves;
+    vector<Move> pseudoMoves;
+    Color myColor = board.getActiveColor();
+    
+    auto isMyPiece = [](const string& piece, Color color) {
+        if (piece == " " || piece.empty()) return false;
+        if (color == WHITE) return isupper(piece[0]) != 0;
+        return islower(piece[0]) != 0;
+    };
+        
+    for (char file = 'a'; file <= 'h'; file++) {
+        for (char rank = '1'; rank <= '8'; rank++) {
+            Position pos = createPosition(file, rank);
+            string pieceStr = board.getPieceAt(pos);
 
-    // ...
+            if (isMyPiece(pieceStr, myColor)) {
+                char pieceType = tolower(pieceStr[0]);
+                vector<Move> pieceMoves;
 
-    return allMoves;
+                switch (pieceType) {
+                    case 'p': {
+                        Pawn p(myColor);
+                        pieceMoves = p.getPseudoLegalMoves(board, pos);
+                        break;
+                    }
+
+                    case 'n': {
+                        Knight n(myColor);
+                        pieceMoves = n.getPseudoLegalMoves(board, pos);
+                        break;
+                    }
+
+                    case 'b' : {
+                        Bishop b(myColor);
+                        pieceMoves = b.getPseudoLegalMoves(board, pos);
+                        break;
+                    }
+
+                    case 'r' : {
+                        Rook r(myColor);
+                        pieceMoves = r.getPseudoLegalMoves(board, pos);
+                        break;
+                    }
+
+                    case 'q' : {
+                        Queen q(myColor);
+                        pieceMoves = q.getPseudoLegalMoves(board, pos);
+                        break;
+                    }
+
+                    case 'k' : {
+                        King k(myColor);
+                        pieceMoves = k.getPseudoLegalMoves(board, pos);
+                        break;
+                    } 
+                }
+                pseudoMoves.insert(pseudoMoves.end(), pieceMoves.begin(), pieceMoves.end());
+            }
+        }
+    }
+
+    return filterLegalMoves(pseudoMoves);
 }
 
 bool ChessEngine::isSquareAttacked(Position pos, Color attackerColor) const {
@@ -112,31 +202,62 @@ bool ChessEngine::isSquareAttacked(Position pos, Color attackerColor) const {
 }
 
 bool ChessEngine::executeMove(Move move)  {
+    vector<Move> legalMoves = getAllLegalMoves();
+    
+    bool moveFound = false;
+    Move verifiedMove;
 
-    // ...
+    for (const Move& legalMove : legalMoves) {
+        if (legalMove.start == move.start &&
+            legalMove.end == move.end &&
+            legalMove.promotedTo == move.promotedTo) {
+
+            verifiedMove = legalMove;
+            moveFound = true;
+            break;
+        }
+    }
+
+    if (moveFound) {
+        board.makeMove(verifiedMove);
+        return true;
+    }
 
     return false;
 }
 
 bool ChessEngine::isCheck() const {
-    
-    // ...
+    Color currentTurn = board.getActiveColor();
 
-    return false;
+    string myKing = (currentTurn == WHITE) ? "K" : "k";
+    Color enemyColor = (currentTurn == WHITE) ? BLACK : WHITE;
+
+    Position kingPos;
+    bool kingFound = false;
+
+    for (char file = 'a'; file <= 'h'; file++) {
+        for (char rank = '1'; rank <= '8'; rank++) {
+            Position pos = createPosition(file, rank);
+            if (board.getPieceAt(pos) == myKing) {
+                kingPos = pos;
+                kingFound = true;
+                break;
+            }
+        }
+        if (kingFound) break;
+    }
+
+    if (!kingFound) return false;
+
+    return isSquareAttacked(kingPos, enemyColor);
 }
 
 bool ChessEngine::isCheckmate() const {
-    
-    // ...
-
-    return false;
+    return  isCheck() && getAllLegalMoves().empty();
 }
 
 bool ChessEngine::isStalemate() const {
-
-    // ...
-
-    return false;
+    return !isCheck() && getAllLegalMoves().empty();
 }
 
 

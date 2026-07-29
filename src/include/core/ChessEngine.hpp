@@ -13,7 +13,7 @@ class ChessEngine {
         ChessEngine();
         ~ChessEngine();
 
-        std::vector<Move> filterLegalMoves(const std::vector<Move> pseudoMoves) const;
+        std::vector<Move> filterLegalMoves(const std::vector<Move>&   pseudoMoves) const;
         std::vector<Move> getAllLegalMoves() const;
 
         bool isSquareAttacked(Position pos, Color attackerColor) const;
