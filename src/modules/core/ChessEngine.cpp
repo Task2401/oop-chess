@@ -77,38 +77,38 @@ vector<Move> ChessEngine::getAllLegalMoves() const {
 
                 switch (pieceType) {
                     case 'p': {
-                        Pawn p(myColor);
-                        pieceMoves = p.getPseudoLegalMoves(board, pos);
+                        Pawn pawn(myColor);
+                        pieceMoves = pawn.getPseudoLegalMoves(board, pos);
                         break;
                     }
 
                     case 'n': {
-                        Knight n(myColor);
-                        pieceMoves = n.getPseudoLegalMoves(board, pos);
+                        Knight knight(myColor);
+                        pieceMoves = knight.getPseudoLegalMoves(board, pos);
                         break;
                     }
 
                     case 'b' : {
-                        Bishop b(myColor);
-                        pieceMoves = b.getPseudoLegalMoves(board, pos);
+                        Bishop bishop(myColor);
+                        pieceMoves = bishop.getPseudoLegalMoves(board, pos);
                         break;
                     }
 
                     case 'r' : {
-                        Rook r(myColor);
-                        pieceMoves = r.getPseudoLegalMoves(board, pos);
+                        Rook rook(myColor);
+                        pieceMoves = rook.getPseudoLegalMoves(board, pos);
                         break;
                     }
 
                     case 'q' : {
-                        Queen q(myColor);
-                        pieceMoves = q.getPseudoLegalMoves(board, pos);
+                        Queen queen(myColor);
+                        pieceMoves = queen.getPseudoLegalMoves(board, pos);
                         break;
                     }
 
                     case 'k' : {
-                        King k(myColor);
-                        pieceMoves = k.getPseudoLegalMoves(board, pos);
+                        King king(myColor);
+                        pieceMoves = king.getPseudoLegalMoves(board, pos);
                         break;
                     } 
                 }
