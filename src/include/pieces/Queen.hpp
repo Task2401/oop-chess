@@ -20,12 +20,12 @@ class Queen : public Piece {
 
         ~Queen() override;
 
-        // @brief Generates combined orthonogal and diagonal pseudo-legal move for the queen.
+        // @brief Generates combined orthogonal and diagonal pseudo-legal move for the queen.
         // @param board Current state if the chess board.
-        // @param currenPos Current position of the queen.
+        // @param currentPos Current position of the queen.
         // @return Vector of pseudo-legal moves.
 
         std::vector<Move> getPseudoLegalMoves(const ChessBoard& board, Position currenPos) const override;
 };
 
-#endif // QUEEN_HP
+#endif // QUEEN_HPP 

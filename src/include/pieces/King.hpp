@@ -22,7 +22,7 @@ class King : public Piece {
 
         // @brief Generates pseudo-legal moves for the king (including castling checks)
         // @param board Current state of the chess board.
-        // @param currentPos Current posiotion of the king.
+        // @param currentPos Current position of the king.
         // @return Vector of pseudo-legal moves.
 
         std::vector<Move> getPseudoLegalMoves(const ChessBoard& board, Position currentPos) const override;

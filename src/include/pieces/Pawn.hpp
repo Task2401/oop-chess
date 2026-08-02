@@ -11,7 +11,7 @@
 class Pawn : public Piece {
     public:
 
-        // @brief Constucts a Pawn of the specified color.
+        // @brief Constructs a Pawn of the specified color.
         // @param c The color of the pawn.
 
         Pawn(Color c);

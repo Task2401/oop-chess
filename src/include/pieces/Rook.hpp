@@ -16,7 +16,7 @@ class Rook : public Piece {
 
         Rook(Color c);
 
-        // @brief Destructor of Rook
+        // @brief Destructor for Rook
 
         ~Rook() override;
 

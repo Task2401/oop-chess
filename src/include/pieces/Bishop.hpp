@@ -16,11 +16,11 @@ class Bishop : public Piece {
 
         Bishop(Color c);
 
-        // @brief Destructor for Bishop/
+        // @brief Destructor for Bishop.
 
         ~Bishop() override;
 
-        // @brief Gnerates diagonal pseudo-legal moves for the bishop.
+        // @brief Generates diagonal pseudo-legal moves for the bishop.
         // @param board Current state of the chess board.
         // @param currentPos Current position of the bishop.
         // @return Vector of pseudo-legal moves.

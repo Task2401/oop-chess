@@ -5,12 +5,12 @@
 
 #include "../core/Common.hpp"
 
-// Forward declaration of ChessBoard to avoid circular depedencies
+// Forward declaration of ChessBoard to avoid circular dependencies
 
 class ChessBoard;
 
 // @class Piece
-// @brief Abstract base class representing a generic class piece.
+// @brief Abstract base class representing a generic chess piece.
 
 class Piece {
     protected:
@@ -40,8 +40,8 @@ class Piece {
 
         // @brief Pure virtual method to generate psudo-legal moves for this piece.
         // @param bo Reference to the current ChessBoard state.
-        // @param currentPos The square position where the piece is currently locate.
-        // @return Vector of candinate psudo-legal moves.
+        // @param currentPos The square position where the piece is currently located.
+        // @return Vector of candidate pseudo-legal moves.
 
         virtual  std::vector<Move> getPseudoLegalMoves(const ChessBoard& board, Position currentPos) const = 0;
 
