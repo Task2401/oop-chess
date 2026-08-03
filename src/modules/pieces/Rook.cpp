@@ -1,5 +1,4 @@
 #include <iostream>
-#include <iostream>
 #include <string>
 #include <cctype>
 #include <vector>
@@ -9,19 +8,29 @@
 
 using namespace std;
 
+// Constructor
+
 Rook::Rook(Color c):Piece(c, (c == WHITE) ? 'R' : 'r') {
-    cout << "Rook created succesfully!" << endl;
+    cout << "Rook created successfully!" << endl;
 }
 
+// Destructor
+
 Rook::~Rook() {
-    cout << "Rook destroyed succesfully!" << endl;
+    cout << "Rook destroyed successfully!" << endl;
 }
+
+// Generates orthogonal (rank/file) pseudo-legal moves for the Rook.
 
 vector<Move> Rook::getPseudoLegalMoves(const ChessBoard& board, Position currentPos) const {
     vector<Move> moves;
     
+    // Straight directions: Up, Down, Right, Left.
+
     int fileDirections[] = {0, 0, 1, -1};
     int rankDirections[] = {1, -1, 0, 0};
+
+    // Helper lambda to check if target piece belongs to opponent.
 
     auto isOpponent = [&](const string& targetPiece) {
         if (targetPiece == " ") return false;
@@ -30,10 +39,14 @@ vector<Move> Rook::getPseudoLegalMoves(const ChessBoard& board, Position current
         return false;
     };
 
+    // Helper lambda to check board boundaries.
+
     auto isWithinBoard = [](char file, char rank) {
         return (file >= 'a' && file <= 'h' && rank >= '1' && rank <= '8');
     };
     
+    // Raycast along all 4 straight  directions.
+
     for (int i = 0; i < 4; i++) {
         char targetFile = currentPos.file + fileDirections[i];
         char targetRank = currentPos.rank + rankDirections[i];
@@ -42,6 +55,8 @@ vector<Move> Rook::getPseudoLegalMoves(const ChessBoard& board, Position current
             Position targetPos = createPosition(targetFile, targetRank);
             string targetPiece = board.getPieceAt(targetPos);
             
+            // Empty square: Add move and continue.
+
             if (targetPiece == " ") {
                 Move move = createEmptyMove();
                 move.start = currentPos;
@@ -49,6 +64,9 @@ vector<Move> Rook::getPseudoLegalMoves(const ChessBoard& board, Position current
                 move.movedPiece = ROOK;
                 moves.push_back(move);
             } else {
+    
+                // Opponent piece: Add capture move and stop raycast.
+
                 if (isOpponent(targetPiece)) {
                     Move move = createEmptyMove();
                     move.start = currentPos;
@@ -56,7 +74,7 @@ vector<Move> Rook::getPseudoLegalMoves(const ChessBoard& board, Position current
                     move.movedPiece = ROOK;
                     moves.push_back(move);
                 }
-                break;
+                break; // Obstacle encountered.
             }
             targetFile += fileDirections[i];
             targetRank += rankDirections[i];
