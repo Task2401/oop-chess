@@ -3,10 +3,12 @@
 
 #include <string>
 
-#include "../core/Common.hpp"
+#include "Common.hpp"
 
- // @class ChessBoard
- // @brief Manages the state and layout of the chessboard.
+/**
+* @class ChessBoard
+* @brief Manages the state and layout of the chessboard.
+*/
 
 class ChessBoard {
     private:
@@ -20,32 +22,44 @@ class ChessBoard {
 
     public:
 
-        // @brief Constructor / Destructor.
+        /**
+        * @brief Constructor / Destructor.
+        */
 
         ChessBoard();
         ~ChessBoard();
 
-        // @brief Initialize the board to the standard starting position.
+        /**
+        * @brief Initialize the board to the standard starting position.
+        */
 
         void setupChessBoard();
 
-        // @brief Displays the current state of the board to stdout/console.
+        /**
+        * @brief Displays the current state of the board to stdout/console.
+        */
 
         void printChessBoard() const;
        
-        // @brief Clear the specified square on the board
-        // @param gridPos Position to clear
+        /**
+        * @brief Clear the specified square on the board
+        * @param gridPos Position to clear
+        */
 
         void clearSquare(const Position& gridPos);
         
-        // @brief Updates the board state by applying a given move.
-        // @param move The move to perform
+        /**
+        * @brief Updates the board state by applying a given move.
+        * @param move The move to perform
+        */
 
         void makeMove(const Move& move);
         
-        // @brief Sets a piece string representation at a specific position.
-        // @param piecePos Target position.
-        // @param pieceStr String representation of the piece.
+        /**
+        * @brief Sets a piece string representation at a specific position.
+        * @param piecePos Target position.
+        * @param pieceStr String representation of the piece.
+        */
 
         void setPieceAt(const Position& piecePos, const std::string& pieceStr);
         

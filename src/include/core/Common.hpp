@@ -1,7 +1,9 @@
 #ifndef COMMON_HPP
 #define COMMON_HPP
 
-// @brief Represents the color of  a piece or player side.
+/**
+ * @brief Represents the color of  a piece or player side.
+ */
 
 enum Color{
     COLOR_NONE,
@@ -9,7 +11,9 @@ enum Color{
     BLACK
 };
 
-// @brief Represents the type of a chess piece.
+/**
+ * @brief Represents the type of a chess piece.
+ */ 
 
 enum PieceType {
     PIECE_NONE,
@@ -21,7 +25,9 @@ enum PieceType {
     KING
 };
 
-// @brief Difficulty levels for AI/Engine settings.
+/**
+ * @brief Difficulty levels for AI/Engine settings.
+ */
 
 enum Difficulty {
     EASY,
@@ -29,14 +35,18 @@ enum Difficulty {
     HARD
 };
 
-// @brief Represents a square on the chessboard using file (column) and rank (row).
+/**
+ * @brief Represents a square on the chessboard using file (column) and rank (row).
+*/
 
 struct Position {
     char file; // e.g., 'a' through 'h'
     char rank; // e,g., '1' through '8'
 };
 
-// @brief Represents a move on the chessboard, including special move flags
+/**
+ * @brief Represents a move on the chessboard, including special move flags
+ */
 
 struct Move {
     Position start;             // Starting square
