@@ -1,5 +1,7 @@
 #include "../../include/core/Common.hpp"
 
+// Factory function to construct a Position struct instance.
+
 Position createPosition(char file, char rank) {
     Position pos;
 
@@ -8,6 +10,8 @@ Position createPosition(char file, char rank) {
     
     return pos;
 }
+
+// Factory function to construct an empty/default Move struct instance.
 
 Move createEmptyMove() {
     Move move;
@@ -24,13 +28,19 @@ Move createEmptyMove() {
     return move;
 }
 
+// Equality operator overload for Position
+
 bool operator==(const Position& a, const Position& b) {
     return a.file == b.file && a.rank == b.rank;
 }
 
+// Inequality operator overload for Position
+
 bool operator!=(const Position& a, const Position& b) {
     return !(a == b);
 }
+
+// Equality operator overload for Move
 
 bool operator==(const Move& a, const Move& b) {
     return a.start == b.start && a.end == b.end &&
