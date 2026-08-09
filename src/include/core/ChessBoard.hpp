@@ -67,8 +67,12 @@ class ChessBoard {
 
         int getRow(const Position& gridPos) const;
         int getCol(const Position& gridPos) const;
+        int getHalfMoveClock() const;
+        int getFullMoveNumber() const;
+        bool getCanCastleKingside(Color color) const;
+        bool getCanCastleQueenside(Color color) const;
         std::string getPieceAt(const Position& piecePos) const;
-        Color getActiveColor() const;
+        Color getActiveColor() const; 
         Position getEnPassantTarget() const;
 };
 

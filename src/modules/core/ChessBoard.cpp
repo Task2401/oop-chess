@@ -230,6 +230,22 @@ int ChessBoard::getCol(const Position& gridPos) const {
 
 // Helper methods to access board properties.
 
+int ChessBoard::getHalfMoveClock() const {
+    return halfMoveClock;
+}
+
+int ChessBoard::getFullMoveNumber() const {
+    return fullMoveNumber;
+}
+
+bool ChessBoard::getCanCastleKingside(Color color) const {
+    return canCastleKingside[color];
+}
+
+bool ChessBoard::getCanCastleQueenside(Color color) const {
+    return canCastleQueenside[color];
+}
+
 string ChessBoard::getPieceAt(const Position& piecePos) const {
     return chessGrid[getRow(piecePos)][getCol(piecePos)];
 }
