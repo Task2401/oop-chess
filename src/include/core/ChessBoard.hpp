@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "Common.hpp"
+#include "../utils/Common.hpp"
 
 /**
 * @class ChessBoard

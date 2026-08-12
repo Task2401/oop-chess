@@ -3,8 +3,9 @@
 #include <string>
 #include <cctype>
 
-#include "../../include/core/ChessBoard.hpp"
 #include "../../include/pieces/Bishop.hpp"
+#include "../../include/core/ChessBoard.hpp"
+
 
 using namespace std;
 

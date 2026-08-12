@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "../core/Common.hpp"
+#include "../utils/Common.hpp"
 
 // Forward declaration of ChessBoard to avoid circular dependencies
 

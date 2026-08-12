@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "../core/Common.hpp"
+#include "Common.hpp"
 #include "../core/ChessBoard.hpp"
 
 struct FEN {

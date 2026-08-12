@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "ChessBoard.hpp"
-#include "Common.hpp"
+#include "../utils/Common.hpp"
 
 /**
  *  @class ChessEngine
