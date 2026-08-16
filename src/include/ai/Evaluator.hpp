@@ -15,6 +15,8 @@ class Evaluator {
         static const int pawnPST[8][8];
         static const int knightPST[8][8];
         static const int bishopPST[8][8];
+        static const int rookPST[8][8];
+        static const int queenPST[8][8];
         static const int kingMiddlePST[8][8];
 
         Evaluator();

@@ -39,6 +39,29 @@ const int Evaluator::bishopPST[8][8] = {
     {-20,-10,-10,-10,-10,-10,-10,-20}
 };
 
+const int Evaluator::rookPST[8][8] = {
+    {  0,  0,  0,  0,  0,  0,  0,  0}, 
+    {  5, 10, 10, 10, 10, 10, 10,  5}, 
+    { -5,  0,  0,  0,  0,  0,  0, -5},
+    { -5,  0,  0,  0,  0,  0,  0, -5},
+    { -5,  0,  0,  0,  0,  0,  0, -5},
+    { -5,  0,  0,  0,  0,  0,  0, -5},
+    { -5,  0,  0,  0,  0,  0,  0, -5},
+    {  0,  0,  0,  5,  5,  0,  0,  0}  
+};
+
+const int Evaluator::queenPST[8][8] = {
+    {-20,-10,-10, -5, -5,-10,-10,-20},
+    {-10,  0,  0,  0,  0,  0,  0,-10},
+    {-10,  0,  5,  5,  5,  5,  0,-10},
+    { -5,  0,  5,  5,  5,  5,  0, -5},
+    {  0,  0,  5,  5,  5,  5,  0, -5},
+    {-10,  5,  5,  5,  5,  5,  0,-10},
+    {-10,  0,  5,  0,  0,  0,  0,-10},
+    {-20,-10,-10, -5, -5,-10,-10,-20}
+};
+
+
 const int Evaluator::kingMiddlePST[8][8] = {
     {-30,-40,-40,-50,-50,-40,-40,-30},
     {-30,-40,-40,-50,-50,-40,-40,-30},
@@ -97,6 +120,14 @@ int Evaluator::getPositionalValue(char piece, char file, char rank) const {
 
         case 'b':
             score = bishopPST[row][col];
+            break;
+
+        case 'r':
+            score = rookPST[row][col];
+            break;
+
+        case 'q':
+            score = queenPST[row][col];
             break;
 
         case 'k':
